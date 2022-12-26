@@ -1,5 +1,5 @@
 {
-  "name": "@ignite-ui/docs",
+  "name": "@yas-ignite-ui/docs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -28,10 +28,10 @@
     "vite": "^4.0.0"
   },
   "dependencies": {
-    "@ignite-ui/eslint-config": "*",
-    "@ignite-ui/react": "*",
-    "@ignite-ui/tokens": "*",
-    "@ignite-ui/ts-config": "*",
+    "@yas-ignite-ui/eslint-config": "*",
+    "@yas-ignite-ui/react": "*",
+    "@yas-ignite-ui/tokens": "*",
+    "@yas-ignite-ui/ts-config": "*",
     "@storybook/addon-a11y": "^6.5.15",
     "phosphor-react": "^1.4.1",
     "polished": "^4.2.2",
