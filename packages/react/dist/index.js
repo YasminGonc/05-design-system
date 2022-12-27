@@ -63,7 +63,8 @@ __export(src_exports, {
   MultiStep: () => MultiStep,
   Text: () => Text,
   TextArea: () => TextArea,
-  TextInput: () => TextInput
+  TextInput: () => TextInput,
+  TooltipComponent: () => TooltipComponent
 });
 module.exports = __toCommonJS(src_exports);
 
@@ -82,7 +83,8 @@ var colors = {
   ignite300: "#00B37E",
   ignite500: "#00875F",
   ignite700: "#015F43",
-  ignite900: "#00291D"
+  ignite900: "#00291D",
+  test: "#fff"
 };
 var space = {
   1: "0.25rem",
@@ -529,6 +531,97 @@ function MultiStep({ size, currentStep = 1 }) {
   ] });
 }
 MultiStep.displayName = "MultiStep";
+
+// src/components/Tooltip/index.tsx
+var Tooltip2 = __toESM(require("@radix-ui/react-tooltip"));
+
+// src/components/Tooltip/styles.ts
+var Tooltip = __toESM(require("@radix-ui/react-tooltip"));
+var TooltipText = styled(Text, {
+  color: "$white",
+  width: "fit-content",
+  padding: "$4 $6",
+  borderRadius: "$sm",
+  cursor: "default",
+  variants: {
+    disponibility: {
+      available: {
+        backgroundColor: "$gray600"
+      },
+      notAvailable: {
+        backgroundColor: "transparent"
+      }
+    }
+  },
+  defaultVariants: {
+    disponibility: "available"
+  }
+});
+var slideUpAndFade = keyframes({
+  from: {
+    transform: "translateY(2px)"
+  },
+  to: {
+    transform: "translateY(0)"
+  }
+});
+var slideRightAndFade = keyframes({
+  from: {
+    transform: "translateX(-2px)"
+  },
+  to: {
+    transform: "translateX(0)"
+  }
+});
+var slideDownAndFade = keyframes({
+  from: {
+    transform: "translateY(-2px)"
+  },
+  to: {
+    transform: "translateY(0)"
+  }
+});
+var slideLeftAndFade = keyframes({
+  from: {
+    transform: "translateX(2px)"
+  },
+  to: {
+    transform: "translateX(0)"
+  }
+});
+var TooltipContent = styled(Tooltip.Content, {
+  backgroundColor: "$gray900",
+  borderRadius: "$sm",
+  padding: "$3 $4",
+  color: "$gray100",
+  fontFamily: "$default",
+  fontSize: "$sm",
+  '&[data-state="delayed-open"][data-side="top"]': {
+    animation: `${slideDownAndFade} 200ms ease-out`
+  },
+  '&[data-state="delayed-open"][data-side="right"]': {
+    animation: `${slideLeftAndFade} 200ms ease-out`
+  },
+  '&[data-state="delayed-open"][data-side="bottom"]': {
+    animation: `${slideUpAndFade} 200ms ease-out`
+  },
+  '&[data-state="delayed-open"][data-side="left"]': {
+    animation: `${slideRightAndFade} 200ms ease-out`
+  }
+});
+
+// src/components/Tooltip/index.tsx
+var import_jsx_runtime5 = require("react/jsx-runtime");
+function TooltipComponent(props) {
+  return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Tooltip2.Provider, { children: /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(Tooltip2.Root, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Tooltip2.Trigger, { asChild: true, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(TooltipText, __spreadProps(__spreadValues({}, props), { children: "27" })) }),
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Tooltip2.Portal, { children: /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(TooltipContent, { sideOffset: -14, children: [
+      props.text,
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Tooltip2.Arrow, {})
+    ] }) })
+  ] }) });
+}
+TooltipComponent.displayName = "Tooltip";
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   Avatar,
@@ -539,5 +632,6 @@ MultiStep.displayName = "MultiStep";
   MultiStep,
   Text,
   TextArea,
-  TextInput
+  TextInput,
+  TooltipComponent
 });
