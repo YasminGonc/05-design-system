@@ -584,6 +584,66 @@ function TooltipComponent(props) {
   ] }) });
 }
 TooltipComponent.displayName = "Tooltip";
+
+// src/components/Toast/index.tsx
+import { useState } from "react";
+
+// src/components/Toast/styles.ts
+import * as Toast from "@radix-ui/react-toast";
+import { X } from "phosphor-react";
+var ToastRoot = styled(Toast.Root, {
+  backgroundColor: "$gray800",
+  borderRadius: "$sm",
+  border: "1px solid $gray600",
+  padding: "$5 $3",
+  width: 360,
+  fontFamily: "$default",
+  lineHeight: "$base"
+});
+var ToastClose = styled(Toast.Close, {
+  all: "unset",
+  display: "flex",
+  alignItems: "center",
+  cursor: "pointer"
+});
+var XIcon = styled(X, {
+  color: "$gray200",
+  height: "$5",
+  width: "$5"
+});
+var ToastTitle = styled(Toast.Title, {
+  color: "$white",
+  fontSize: "$xl",
+  fontWeight: "$bold",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between"
+});
+var ToastDescription = styled(Toast.Description, {
+  color: "$gray200",
+  fontSize: "$sm"
+});
+var ToastViewport = styled(Toast.Viewport, {
+  listStyle: "none"
+});
+
+// src/components/Toast/index.tsx
+import * as Toast2 from "@radix-ui/react-toast";
+import { jsx as jsx6, jsxs as jsxs5 } from "react/jsx-runtime";
+function ToastComponent() {
+  const [open, setOpen] = useState(true);
+  return /* @__PURE__ */ jsxs5(Toast2.Provider, { swipeDirection: "right", duration: 5e6, children: [
+    /* @__PURE__ */ jsx6(Button, { children: "Finalizar" }),
+    /* @__PURE__ */ jsxs5(ToastRoot, { open, onOpenChange: setOpen, children: [
+      /* @__PURE__ */ jsxs5(ToastTitle, { children: [
+        "Agendamento realizado",
+        /* @__PURE__ */ jsx6(ToastClose, { children: /* @__PURE__ */ jsx6(XIcon, {}) })
+      ] }),
+      /* @__PURE__ */ jsx6(ToastDescription, { children: "Quarta-feira, 23 de outubro \xE0s 16h" })
+    ] }),
+    /* @__PURE__ */ jsx6(ToastViewport, {})
+  ] });
+}
 export {
   Avatar2 as Avatar,
   Box,
@@ -594,5 +654,6 @@ export {
   Text,
   TextArea,
   TextInput,
+  ToastComponent,
   TooltipComponent
 };

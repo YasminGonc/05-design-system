@@ -64,6 +64,7 @@ __export(src_exports, {
   Text: () => Text,
   TextArea: () => TextArea,
   TextInput: () => TextInput,
+  ToastComponent: () => ToastComponent,
   TooltipComponent: () => TooltipComponent
 });
 module.exports = __toCommonJS(src_exports);
@@ -622,6 +623,66 @@ function TooltipComponent(props) {
   ] }) });
 }
 TooltipComponent.displayName = "Tooltip";
+
+// src/components/Toast/index.tsx
+var import_react2 = require("react");
+
+// src/components/Toast/styles.ts
+var Toast = __toESM(require("@radix-ui/react-toast"));
+var import_phosphor_react3 = require("phosphor-react");
+var ToastRoot = styled(Toast.Root, {
+  backgroundColor: "$gray800",
+  borderRadius: "$sm",
+  border: "1px solid $gray600",
+  padding: "$5 $3",
+  width: 360,
+  fontFamily: "$default",
+  lineHeight: "$base"
+});
+var ToastClose = styled(Toast.Close, {
+  all: "unset",
+  display: "flex",
+  alignItems: "center",
+  cursor: "pointer"
+});
+var XIcon = styled(import_phosphor_react3.X, {
+  color: "$gray200",
+  height: "$5",
+  width: "$5"
+});
+var ToastTitle = styled(Toast.Title, {
+  color: "$white",
+  fontSize: "$xl",
+  fontWeight: "$bold",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between"
+});
+var ToastDescription = styled(Toast.Description, {
+  color: "$gray200",
+  fontSize: "$sm"
+});
+var ToastViewport = styled(Toast.Viewport, {
+  listStyle: "none"
+});
+
+// src/components/Toast/index.tsx
+var Toast2 = __toESM(require("@radix-ui/react-toast"));
+var import_jsx_runtime6 = require("react/jsx-runtime");
+function ToastComponent() {
+  const [open, setOpen] = (0, import_react2.useState)(true);
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(Toast2.Provider, { swipeDirection: "right", duration: 5e6, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Button, { children: "Finalizar" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(ToastRoot, { open, onOpenChange: setOpen, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(ToastTitle, { children: [
+        "Agendamento realizado",
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastClose, { children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(XIcon, {}) })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastDescription, { children: "Quarta-feira, 23 de outubro \xE0s 16h" })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastViewport, {})
+  ] });
+}
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   Avatar,
@@ -633,5 +694,6 @@ TooltipComponent.displayName = "Tooltip";
   Text,
   TextArea,
   TextInput,
+  ToastComponent,
   TooltipComponent
 });

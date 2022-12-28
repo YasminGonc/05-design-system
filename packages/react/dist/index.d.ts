@@ -22,6 +22,7 @@ declare const Box: _stitches_react_types_styled_component.StyledComponent<"div",
         ignite500: string;
         ignite700: string;
         ignite900: string;
+        test: string;
     };
     fontSizes: {
         xxs: string;
@@ -231,6 +232,7 @@ declare const Text: _stitches_react_types_styled_component.StyledComponent<"p", 
         ignite500: string;
         ignite700: string;
         ignite900: string;
+        test: string;
     };
     fontSizes: {
         xxs: string;
@@ -440,6 +442,7 @@ declare const Heading: _stitches_react_types_styled_component.StyledComponent<"h
         ignite500: string;
         ignite700: string;
         ignite900: string;
+        test: string;
     };
     fontSizes: {
         xxs: string;
@@ -647,6 +650,7 @@ declare const AvatarImage: _stitches_react_types_styled_component.StyledComponen
         ignite500: string;
         ignite700: string;
         ignite900: string;
+        test: string;
     };
     fontSizes: {
         xxs: string;
@@ -861,6 +865,7 @@ declare const Button: _stitches_react_types_styled_component.StyledComponent<"bu
         ignite500: string;
         ignite700: string;
         ignite900: string;
+        test: string;
     };
     fontSizes: {
         xxs: string;
@@ -1068,6 +1073,7 @@ declare const Input: _stitches_react_types_styled_component.StyledComponent<"inp
         ignite500: string;
         ignite700: string;
         ignite900: string;
+        test: string;
     };
     fontSizes: {
         xxs: string;
@@ -1280,6 +1286,7 @@ declare const TextArea: _stitches_react_types_styled_component.StyledComponent<"
         ignite500: string;
         ignite700: string;
         ignite900: string;
+        test: string;
     };
     fontSizes: {
         xxs: string;
@@ -1486,6 +1493,7 @@ declare const CheckboxContainer: _stitches_react_types_styled_component.StyledCo
         ignite500: string;
         ignite700: string;
         ignite900: string;
+        test: string;
     };
     fontSizes: {
         xxs: string;
@@ -2110,4 +2118,6 @@ declare namespace TooltipComponent {
     var displayName: string;
 }
 
-export { Avatar, AvatarProps, Box, BoxProps, Button, ButtonProps, Checkbox, CheckboxProps, Heading, HeadingProps, MultiStep, MultiStepProps, Text, TextArea, TextAreaProps, TextInput, TextInputProps, TextProps, TooltipComponent, TooltipPros };
+declare function ToastComponent(): JSX.Element;
+
+export { Avatar, AvatarProps, Box, BoxProps, Button, ButtonProps, Checkbox, CheckboxProps, Heading, HeadingProps, MultiStep, MultiStepProps, Text, TextArea, TextAreaProps, TextInput, TextInputProps, TextProps, ToastComponent, TooltipComponent, TooltipPros };
