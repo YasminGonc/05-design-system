@@ -1,0 +1,2 @@
+import{A as t}from"./index.6b376176.js";import"./index.47ee0939.js";import"./iframe.1e57dadc.js";import"./index.8f8c3a8d.js";import"./jsx-runtime.71082bf5.js";const c={title:"Data Display/Avatar",component:t,args:{src:"https://github.com/YasminGonc.png",alt:"Yasmin Gon\xE7alves"},argTypes:{src:{control:{type:"text"}}}},m={},n={args:{src:void 0}},p=["Primary","WithFallback"];export{m as Primary,n as WithFallback,p as __namedExportsOrder,c as default};
+//# sourceMappingURL=Avatar.stories.7d625d45.js.map
