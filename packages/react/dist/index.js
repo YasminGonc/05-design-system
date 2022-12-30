@@ -533,9 +533,6 @@ function MultiStep({ size, currentStep = 1 }) {
 }
 MultiStep.displayName = "MultiStep";
 
-// src/components/Tooltip/index.tsx
-var Tooltip2 = __toESM(require("@radix-ui/react-tooltip"));
-
 // src/components/Tooltip/styles.ts
 var Tooltip = __toESM(require("@radix-ui/react-tooltip"));
 var TooltipText = styled(Text, {
@@ -612,12 +609,23 @@ var TooltipContent = styled(Tooltip.Content, {
 });
 
 // src/components/Tooltip/index.tsx
+var Tooltip2 = __toESM(require("@radix-ui/react-tooltip"));
+var import_date_fns = require("date-fns");
+var import_pt_BR = __toESM(require("date-fns/locale/pt-BR"));
 var import_jsx_runtime5 = require("react/jsx-runtime");
 function TooltipComponent(props) {
+  function formatDate(date) {
+    return (0, import_date_fns.format)(date, "dd");
+  }
+  function formatDateContent(date) {
+    return (0, import_date_fns.format)(date, "dd 'de' MMMM -", {
+      locale: import_pt_BR.default
+    });
+  }
   return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Tooltip2.Provider, { children: /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(Tooltip2.Root, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Tooltip2.Trigger, { asChild: true, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(TooltipText, __spreadProps(__spreadValues({}, props), { children: "27" })) }),
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Tooltip2.Trigger, { asChild: true, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(TooltipText, __spreadProps(__spreadValues({}, props), { children: formatDate(props.date) })) }),
     /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Tooltip2.Portal, { children: /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(TooltipContent, { sideOffset: -14, children: [
-      props.text,
+      props.disponibility === "available" ? `${formatDateContent(props.date)} Dispon\xEDvel` : `${formatDateContent(props.date)} Indispon\xEDvel`,
       /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Tooltip2.Arrow, {})
     ] }) })
   ] }) });
@@ -658,27 +666,54 @@ var ToastTitle = styled(Toast.Title, {
   alignItems: "center",
   justifyContent: "space-between"
 });
-var ToastDescription = styled(Toast.Description, {
+var ToastDescription = styled("p", {
   color: "$gray200",
-  fontSize: "$sm"
+  fontSize: "$sm",
+  margin: 0
 });
 var ToastViewport = styled(Toast.Viewport, {
+  position: "fixed",
+  bottom: 0,
+  right: 0,
+  padding: "$8",
   listStyle: "none"
 });
 
 // src/components/Toast/index.tsx
 var Toast2 = __toESM(require("@radix-ui/react-toast"));
+var import_date_fns2 = require("date-fns");
+var import_pt_BR2 = __toESM(require("date-fns/locale/pt-BR"));
+var import_phosphor_react4 = require("phosphor-react");
 var import_jsx_runtime6 = require("react/jsx-runtime");
-function ToastComponent() {
-  const [open, setOpen] = (0, import_react2.useState)(true);
-  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(Toast2.Provider, { swipeDirection: "right", duration: 5e6, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Button, { children: "Finalizar" }),
+function ToastComponent({ date }) {
+  const [open, setOpen] = (0, import_react2.useState)(false);
+  const timeRef = (0, import_react2.useRef)(0);
+  function handleOnClick() {
+    setOpen(false);
+    window.clearTimeout(timeRef.current);
+    timeRef.current = window.setTimeout(() => {
+      setOpen(true);
+    }, 100);
+  }
+  function dateFormat(date2) {
+    return (0, import_date_fns2.format)(date2, "EEEE ',' dd 'de' MMMM '\xE0s' kk'h", {
+      locale: import_pt_BR2.default
+    });
+  }
+  (0, import_react2.useEffect)(() => {
+    return () => clearTimeout(timeRef.current);
+  }, []);
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(Toast2.Provider, { swipeDirection: "right", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(Button, { onClick: handleOnClick, children: [
+      "Finalizar",
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(import_phosphor_react4.ArrowRight, {})
+    ] }),
     /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(ToastRoot, { open, onOpenChange: setOpen, children: [
       /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(ToastTitle, { children: [
         "Agendamento realizado",
         /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastClose, { children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(XIcon, {}) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastDescription, { children: "Quarta-feira, 23 de outubro \xE0s 16h" })
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Toast2.Description, { asChild: true, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastDescription, { children: dateFormat(date) }) })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastViewport, {})
   ] });

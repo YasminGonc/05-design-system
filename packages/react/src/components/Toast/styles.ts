@@ -37,11 +37,16 @@ export const ToastTitle = styled(Toast.Title, {
   justifyContent: 'space-between',
 })
 
-export const ToastDescription = styled(Toast.Description, {
+export const ToastDescription = styled('p', {
   color: '$gray200',
   fontSize: '$sm',
+  margin: 0,
 })
 
 export const ToastViewport = styled(Toast.Viewport, {
+  position: 'fixed',
+  bottom: 0,
+  right: 0,
+  padding: '$8',
   listStyle: 'none',
 })

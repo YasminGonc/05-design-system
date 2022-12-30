@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   ToastClose,
   ToastDescription,
@@ -8,15 +8,44 @@ import {
   XIcon,
 } from './styles'
 import * as Toast from '@radix-ui/react-toast'
+import { format } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
 
 import { Button } from '../Button'
+import { ArrowRight } from 'phosphor-react'
 
-export function ToastComponent() {
-  const [open, setOpen] = useState(true)
+export interface ToastProps {
+  date: Date
+}
+
+export function ToastComponent({ date }: ToastProps) {
+  const [open, setOpen] = useState(false)
+  const timeRef = useRef(0)
+
+  function handleOnClick() {
+    setOpen(false)
+    window.clearTimeout(timeRef.current)
+    timeRef.current = window.setTimeout(() => {
+      setOpen(true)
+    }, 100)
+  }
+
+  function dateFormat(date: Date) {
+    return format(date, "EEEE ',' dd 'de' MMMM 'às' kk'h", {
+      locale: ptBR,
+    })
+  }
+
+  useEffect(() => {
+    return () => clearTimeout(timeRef.current)
+  }, [])
 
   return (
-    <Toast.Provider swipeDirection="right" duration={5000000}>
-      <Button>Finalizar</Button>
+    <Toast.Provider swipeDirection="right">
+      <Button onClick={handleOnClick}>
+        Finalizar
+        <ArrowRight />
+      </Button>
 
       <ToastRoot open={open} onOpenChange={setOpen}>
         <ToastTitle>
@@ -25,7 +54,9 @@ export function ToastComponent() {
             <XIcon />
           </ToastClose>
         </ToastTitle>
-        <ToastDescription>Quarta-feira, 23 de outubro às 16h</ToastDescription>
+        <Toast.Description asChild>
+          <ToastDescription>{dateFormat(date)}</ToastDescription>
+        </Toast.Description>
       </ToastRoot>
 
       <ToastViewport />

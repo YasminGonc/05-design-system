@@ -2112,12 +2112,16 @@ declare const TooltipText: _stitches_react_types_styled_component.StyledComponen
 
 interface TooltipPros extends ComponentProps<typeof TooltipText> {
     text: string;
+    date: Date;
 }
 declare function TooltipComponent(props: TooltipPros): JSX.Element;
 declare namespace TooltipComponent {
     var displayName: string;
 }
 
-declare function ToastComponent(): JSX.Element;
+interface ToastProps {
+    date: Date;
+}
+declare function ToastComponent({ date }: ToastProps): JSX.Element;
 
-export { Avatar, AvatarProps, Box, BoxProps, Button, ButtonProps, Checkbox, CheckboxProps, Heading, HeadingProps, MultiStep, MultiStepProps, Text, TextArea, TextAreaProps, TextInput, TextInputProps, TextProps, ToastComponent, TooltipComponent, TooltipPros };
+export { Avatar, AvatarProps, Box, BoxProps, Button, ButtonProps, Checkbox, CheckboxProps, Heading, HeadingProps, MultiStep, MultiStepProps, Text, TextArea, TextAreaProps, TextInput, TextInputProps, TextProps, ToastComponent, ToastProps, TooltipComponent, TooltipPros };
